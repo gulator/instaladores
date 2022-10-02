@@ -1,0 +1,52 @@
+from django.db import models
+import datetime
+import os
+from django.contrib.auth.models import User
+from ckeditor.fields import RichTextField
+
+# Create your models here.
+
+def ruta (request, filename):
+    nombre_viejo = filename
+    hora = datetime.datetime.now().strftime('%Y%m%d%H%M%S')
+    nombre_nuevo = "%s%s" % ( hora, nombre_viejo)
+    return os.path.join ('', nombre_nuevo)
+
+class Registro (models.Model):
+    usuario = models.CharField(max_length=20)
+    nombre = models.CharField(max_length=60)
+    correo = models.EmailField()
+    telefono = models.IntegerField()
+    localidad = models.CharField(max_length=60)
+    provincia = models.CharField(max_length=20)
+    pais = models.CharField(max_length=20)
+    comercio = models.CharField(max_length=60)
+    cuit = models.IntegerField()
+
+    def __str__(self):
+        return f'Usuario: {self.tipo} | {self.nombre} | {self.correo} | {self.comercio} | Cuit: {self.cuit}'
+
+class Marca (models.Model):
+    marca = models.CharField(max_length=20)
+    
+    def __str__(self):
+        return f'Marca: {self.marca}'
+
+class Tipo_Manual (models.Model):
+    tipo = models.CharField(max_length=20)
+    #ex-fx-px
+    #keyless
+    #home
+    #modulo
+    #manual
+    def __str__(self):
+        return f'Tipo Manual: {self.tipo}'
+
+class Instructivo (models.Model):
+    marca = models.CharField(max_length=20)
+    tipo = models.CharField(max_length=20)
+    titulo = models.CharField(max_length=40)
+    archivo = models.FileField(upload_to = ruta, null=False, blank=False)
+
+    def __str__(self): 
+        return f'Archivo: {self.marca}-{self.tipo}-{self.titulo}'
