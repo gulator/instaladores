@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block bloque_registro %}
+
+
+<main>
+    <section class="login">
+        <div class="container ">
+            <h3>Formulario de Registro</h3>
+            <form class="formulario" action="">
+
+                
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="nombre">Nombre</span>
+                    <input type="text" class="form-control campo" name="nombre">
+                </div>
+                
+                <input class="campo" type="number" name="telefono" placeholder="telefono">
+                <input class="campo" type="text" name="localidad" placeholder="localidad">
+                <select name="provincia" id="">
+                    <option value="">CABA</option>
+                    <option value="">GBA Norte</option>
+                    <option value="">GBA Oeste</option>
+                    <option value="">GBA Sur</option>
+                    <option value="">Catamarca</option>
+                    <option value="">Córdoba</option>
+                    <option value="">Chubut</option>
+                </select>
+                <input class="boton" type="submit" value="registrarse">
+            </form>
+
+            <!-- usuario = models.CharField(max_length=20)
+    nombre = models.CharField(max_length=60)
+    correo = models.EmailField()
+    telefono = models.IntegerField()
+    localidad = models.CharField(max_length=60)
+    provincia = models.CharField(max_length=20)
+    pais = models.CharField(max_length=20)
+    comercio = models.CharField(max_length=60)
+    cuit = models.IntegerField() -->
+        </div>
+    </section>
+    <section class="texto-login">
+
+    </section>
+
+</main>
+
+{% endblock %}

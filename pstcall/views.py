@@ -15,3 +15,6 @@ import random
 
 def inicio (request):
     return render (request,'index.html')
+
+def registro (request):
+    return render (request, 'registro.html')

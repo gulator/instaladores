@@ -22,7 +22,7 @@ from django.shortcuts import redirect
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.inicio, name='inicio'),
+    path('', views.inicio, name='inicio'),    
     path('pstcall/', include('pstcall.urls')),
     path('cuentas/', include('cuentas.urls')),    
 ]
