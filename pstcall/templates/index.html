@@ -2,25 +2,79 @@
 {% load static %}
 
 
-{% block bloque_login %}
+{% block bloque_main %}
 
 
 <main>
-    <section class="login">
-        <div class="container ">
-            <h5>Ingresa tus credenciales si estas registrados</h5>
-            <form class="formulario" action="">
-                <input class="campo" type="text" name="nombre" placeholder="usuario">
-                <input class="campo" type="password" name="password" placeholder="contraseña">
-                <input class="boton" type="submit" value="ingresar">
-            </form>
-            <a href="{% url 'registro' %}">registrarse</a>
-        </div>
-    </section>
-    <section class="texto-login">
+    <principal class="principal">
+        <section class="novedades">
+            <div class="containerNovedades ">
+                <h4>Novedades</h4>
+                <div class="card margenCard">
+                    <div class="card-body">
+                        <h5 class="card-title">Special title treatment</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+                <div class="card margenCard">
+                    <div class="card-body">
+                        <h5 class="card-title">Special title treatment</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+                <div class="card margenCard">
+                    <div class="card-body">
+                        <h5 class="card-title">Special title treatment</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+                <div class="card margenCard">
+                    <div class="card-body">
+                        <h5 class="card-title">Special title treatment</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+                <div class="card margenCard">
+                    <div class="card-body">
+                        <h5 class="card-title">Special title treatment</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="instructivos">
+            <section class="containerInstructivos">
+                <h4>Instructivos</h4>
+                <form action="">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control anchoInput" placeholder="Buscar por modelo de vehículo"
+                            aria-label="modelo vehiculo" aria-describedby="button-addon2">
+                        <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-search" viewBox="0 0 16 16">
+                                    <path
+                                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                                </svg></i></button>
+                    </div>
+                </form>
+            </section>
+            <section>
+                <div class="card margenCard">
+                    <div class="card-body">
+                        <h5 class="card-title">Special title treatment</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </section>
 
-    </section>
-
+        </section>
+    </principal>
 </main>
 
 {% endblock %}

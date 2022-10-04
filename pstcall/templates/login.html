@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block bloque_login %}
+
+
+<main>
+    <section class="login">
+        <div class="container ">
+            <h5>Ingresa tus credenciales si estas registrados</h5>
+            <form class="formulario" action="">
+                <input class="campo" type="text" name="nombre" placeholder="usuario">
+                <input class="campo" type="password" name="password" placeholder="contraseña">
+                <input class="boton" type="submit" value="ingresar">
+            </form>
+            <a href="{% url 'registro' %}">registrarse</a>
+        </div>
+    </section>
+    <section class="texto-login">
+
+    </section>
+
+</main>
+
+{% endblock %}
