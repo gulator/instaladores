@@ -13,8 +13,17 @@ import random
 # Create your views here.
 
 
-def inicio (request):
-    return render (request,'index.html')
+def login (request):
+    return render (request,'login.html')
 
 def registro (request):
     return render (request, 'registro.html')
+
+def inicio (request):
+    instructivos = Instructivo.objects.all()
+    
+    return render (request, 'index.html', {'instructivos':instructivos})
+
+def buscar_instructivo (request):
+    pass
+

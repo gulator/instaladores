@@ -8,7 +8,7 @@ from ckeditor.fields import RichTextField
 
 def ruta (request, filename):
     nombre_viejo = filename
-    hora = datetime.datetime.now().strftime('%Y%m%d%H%M%S')
+    hora = datetime.datetime.now().strftime('%Y%m%d_%H-%M-%S')
     nombre_nuevo = "%s%s" % ( hora, nombre_viejo)
     return os.path.join ('', nombre_nuevo)
 
@@ -50,3 +50,10 @@ class Instructivo (models.Model):
 
     def __str__(self): 
         return f'Archivo: {self.marca}-{self.tipo}-{self.titulo}'
+
+class Novedad (models.Model):
+    titulo = models.CharField(max_length=80)
+    subtitulo = models.CharField(max_length=80)
+    cuerpo = RichTextField(blank=True, null=True)
+    fecha = models.DateTimeField()
+    imagen = models.ImageField(upload_to = ruta, null=True, blank=True)
