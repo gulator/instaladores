@@ -6,6 +6,18 @@
 
 
 <main>
+    <div>
+        {% if texto2 %}
+        <div class="alert alert-warning" role="alert" style="text-align: center;">
+          {{texto2}}
+        </div>
+        {% endif %}
+        {% if texto %}
+        <div class="alert alert-danger" role="alert" style="text-align: center;">
+          {{texto}}
+        </div>
+        {% endif %}
+      </div>
     <principal class="principal">
         <section class="novedades">
             <div class="containerNovedades ">
@@ -50,16 +62,19 @@
         <section class="instructivos">
             <section class="containerInstructivos">
                 <h4>Instructivos</h4>
-                <form action="">
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control anchoInput" placeholder="Buscar por modelo de vehículo"
-                            aria-label="modelo vehiculo" aria-describedby="button-addon2">
+                <form class="formBusqueda" action="/pstcall/buscar_instructivo">
+                    <div class="input-group mb-3 borrar">
+                        <input type="text" class="form-control anchoInput" placeholder="Buscar por vehículo"
+                            aria-label="modelo vehiculo" aria-describedby="button-addon2" name="vehiculo">
                         <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i><svg
                                     xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-search" viewBox="0 0 16 16">
                                     <path
                                         d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
                                 </svg></i></button>
+                    </div>
+                    <div class="borrar">
+                        <a class="borrarMute" href="{% url 'inicio' %}">borrar filtro</a>
                     </div>
                 </form>
             </section>
@@ -78,7 +93,7 @@
                       <tr>
                         <th scope="row">{{n.tipo}}</th>
                         <td>{{n.marca}}</td>
-                        <td>{{n.titulo}}</td>
+                        <td>{{n.vehiculo}}</td>
                         <td><a href="{{n.archivo}}" target="_blank" rel="noopener noreferrer">descargar</a></td>
                       </tr>
                       {% endfor %}                      

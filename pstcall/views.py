@@ -13,8 +13,6 @@ import random
 # Create your views here.
 
 
-def login (request):
-    return render (request,'login.html')
 
 def registro (request):
     return render (request, 'registro.html')
@@ -24,6 +22,25 @@ def inicio (request):
     
     return render (request, 'index.html', {'instructivos':instructivos})
 
-def buscar_instructivo (request):
-    pass
+def buscar_instructivo (request):    
+
+    texto = f'Ingrese un texto en el campo de búsqueda'
+
+    if request.GET['vehiculo']:
+        vehiculo = request.GET['vehiculo']
+        instructivos = Instructivo.objects.filter(vehiculo__icontains=vehiculo)
+        texto2 = f'no se han encontrado instructivos para el vehículo "{vehiculo}"'
+
+        if vehiculo:                                   
+            return render (request,'index.html',{'instructivos':instructivos})
+        else:
+            instructivos = Instructivo.objects.all()                    
+            return render (request,'index.html',{'instructivos':instructivos,
+                                                            'texto2':texto2
+                                                            })   
+    else:
+        instructivos = Instructivo.objects.all()                     
+        return render (request,'index.html',{'instructivos':instructivos,
+                                                        'texto':texto
+                                                        })
 

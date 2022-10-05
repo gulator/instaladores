@@ -45,7 +45,7 @@ class Tipo_Manual (models.Model):
 class Instructivo (models.Model):
     marca = models.CharField(max_length=20)
     tipo = models.CharField(max_length=20)
-    titulo = models.CharField(max_length=40)
+    vehiculo = models.CharField(max_length=40)
     archivo = models.FileField(upload_to = ruta, null=False, blank=False)
 
     def __str__(self): 
