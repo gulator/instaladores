@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block bloque_registro %}
+
+
+<main>
+    <div>
+        {}
+        <div style="margin: auto;width: 450px;align-content: center;">
+        <div class="shadow p-4 mb-4 rounded blanco">
+            <h3 style="color: #004081;" align="center"> Registrar usuario</h1>
+                <form action="" method="POST" class="formRegistro">
+                    {% csrf_token %}
+                
+                    {{form.as_p}}
+                    {{form.as_p}}
+                
+                    <div>
+                        <input type="submit" value="Registrar"  class="boton">
+                    </div>
+                
+                
+                </form>
+                <p style="color: red ;">{{mensaje}}</p>
+        </div>
+        </div>
+    </div>
+    <!-- <section class="registro">
+            <div>
+                <h3>Formulario de Registro</h3>
+            </div>
+            <form class="formulario registrar" action="">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="nombre">Nombre</span>
+                    <input type="text" class="form-control campo" name="nombre">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="nombre">Telefono</span>
+                    <input type="number" class="form-control campo" name="nombre" placeholder="Ej: 1144445555">
+                </div>
+                
+                <input class="campo" type="number" name="telefono" placeholder="telefono">
+                <input class="campo" type="text" name="localidad" placeholder="localidad">
+                <select name="provincia" id="">
+                    <option value="">CABA</option>
+                    <option value="">GBA Norte</option>
+                    <option value="">GBA Oeste</option>
+                    <option value="">GBA Sur</option>
+                    <option value="">Catamarca</option>
+                    <option value="">Córdoba</option>
+                    <option value="">Chubut</option>
+                </select>
+                <input class="boton" type="submit" value="registrarse">
+            </form>
+
+            <!-- usuario = models.CharField(max_length=20)
+            nombre = models.CharField(max_length=60)
+            correo = models.EmailField()
+            telefono = models.IntegerField()
+            localidad = models.CharField(max_length=60)
+            provincia = models.CharField(max_length=20)
+            pais = models.CharField(max_length=20)
+            comercio = models.CharField(max_length=60)
+            cuit = models.IntegerField()
+        
+    </section>
+    <section class="texto-login">
+
+    </section> -->
+
+</main>
+
+{% endblock %}

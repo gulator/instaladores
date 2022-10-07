@@ -9,8 +9,10 @@ from ckeditor.fields import RichTextField
 def ruta (request, filename):
     nombre_viejo = filename
     hora = datetime.datetime.now().strftime('%Y%m%d_%H-%M-%S')
-    nombre_nuevo = "%s%s" % ( hora, nombre_viejo)
+    nombre_nuevo = "%s%s" % (hora,nombre_viejo)
     return os.path.join ('', nombre_nuevo)
+
+
 
 class Registro (models.Model):
     usuario = models.CharField(max_length=20)
@@ -49,7 +51,7 @@ class Instructivo (models.Model):
     archivo = models.FileField(upload_to = ruta, null=False, blank=False)
 
     def __str__(self): 
-        return f'Archivo: {self.marca}-{self.tipo}-{self.titulo}'
+        return f'Archivo: {self.marca}-{self.tipo}-{self.vehiculo}'
 
 class Novedad (models.Model):
     titulo = models.CharField(max_length=80)
@@ -57,3 +59,15 @@ class Novedad (models.Model):
     cuerpo = RichTextField(blank=True, null=True)
     fecha = models.DateTimeField()
     imagen = models.ImageField(upload_to = ruta, null=True, blank=True)
+
+class Profile (models.Model):
+    user = models.OneToOneField(User, null=True, on_delete = models.CASCADE)
+    comercio = models.CharField(max_length=60)
+    cuit = models.IntegerField()
+    telefono = models.IntegerField()
+    localidad = models.CharField(max_length=60)
+    provincia = models.CharField(max_length=60)
+    pais = models.CharField(max_length=60)
+
+    def __str__(self): 
+        return f'{self.user} - {self.comercio} - {self.localidad} - {self.provincia}'

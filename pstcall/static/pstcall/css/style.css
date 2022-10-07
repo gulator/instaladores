@@ -9,7 +9,6 @@ html, body{
     background-color: #e0e0e0;
 }
 
-
 .header-primario {
   height: 80px;
   display: flex;
@@ -84,7 +83,7 @@ box-shadow:  4px 4px 8px #bebebe,
 .boton{
     width: 80px;
     height: 30px;
-    margin: 5px 0px;
+    margin: 8px 0px;
     border: 0;
     border-radius: 4px;
     background: linear-gradient(145deg, #004c99, #004081);
@@ -162,4 +161,16 @@ h5{
   font-style: italic;
   font-size: 14px;
   
+}
+
+.errorlist {
+  color: #f1f1f1;
+  margin: 0;
+}
+.formRegistro p{
+  margin-bottom: 0px;
+  
+}
+.blanco {
+  background: #f1f1f1 ;
 }

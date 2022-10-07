@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 {% load static %}
 
 <head>
@@ -31,6 +31,7 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        {% if user.is_authenticated %}
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
                                 <a class="nav-link" aria-current="page" href="#">Foro</a>
@@ -41,7 +42,11 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Lista de precios</a>
                             </li>  
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'Logout' %}">Logout</a>
+                            </li>  
                         </ul>
+                        {% endif %}
                     </div>
                 </div>
             </nav>
