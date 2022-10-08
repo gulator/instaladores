@@ -112,4 +112,4 @@ def register (request):
 def logout_usuario (request):
     logout(request)
 
-    return redirect ('inicio')
+    return redirect ('Login')

@@ -1,6 +1,7 @@
 from dataclasses import fields
 from logging import PlaceHolder
 from multiprocessing.sharedctypes import Value
+from platform import architecture
 from tkinter import Widget
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
@@ -49,5 +50,10 @@ class RegisterUserForm2 (forms.Form):
     localidad = forms.CharField(max_length=60)
     provincia = forms.CharField(max_length=60)
     pais = forms.CharField(max_length=60)
-    
+
+class NuevoInstructivo (forms.Form):
+    tipo = forms.CharField(max_length=20)
+    marca = forms.CharField(max_length=20)
+    vehiculo = forms.CharField(max_length=20)
+    archivo = forms.FileField()
     

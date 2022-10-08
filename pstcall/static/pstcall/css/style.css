@@ -105,6 +105,7 @@ box-shadow:  4px 4px 8px #bebebe,
 }
 h5{
     padding: 5px;
+    
 }
 .margenCard{
   margin: 5px 0px;
@@ -173,4 +174,23 @@ h5{
 }
 .blanco {
   background: #f1f1f1 ;
+}
+.blancoInstructivo{
+  background: #f1f1f1 ;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 400px;
+}
+.blancoInstructivo h5{
+  margin: 5px;
+}
+.usuario{
+  color: greenyellow;
+  font-style: italic;
+  font-size: 16px;
+  margin: 0;
+  height: 40px;
+  text-align: end;
 }

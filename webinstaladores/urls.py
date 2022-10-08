@@ -16,13 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from pstcall import views
+from cuentas import views
 from django.conf import settings #para imagenes
 from django.conf.urls.static import static #para imagenes
 from django.shortcuts import redirect
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.inicio, name='inicio'),    
+    path('', views.login_request, name="Login"),    
+    #path('', views.inicio, name='inicio'),    
     path('pstcall/', include('pstcall.urls')),
     path('cuentas/', include('cuentas.urls')),    
 ]
