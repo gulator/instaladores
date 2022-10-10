@@ -33,7 +33,7 @@ def buscar_instructivo(request):
         instructivos = Instructivo.objects.filter(vehiculo__icontains=vehiculo)
         texto2 = f'no se han encontrado instructivos para el vehículo "{vehiculo}"'
 
-        if vehiculo:
+        if instructivos:
             return render(request, "index.html", {"instructivos": instructivos})
         else:
             instructivos = Instructivo.objects.all()

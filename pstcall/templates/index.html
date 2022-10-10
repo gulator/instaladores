@@ -9,15 +9,15 @@
     <div>
         {% if texto2 %}
         <div class="alert alert-warning" role="alert" style="text-align: center;">
-          {{texto2}}
+            {{texto2}}
         </div>
         {% endif %}
         {% if texto %}
         <div class="alert alert-danger" role="alert" style="text-align: center;">
-          {{texto}}
+            {{texto}}
         </div>
         {% endif %}
-      </div>
+    </div>
     <principal class="principal">
         <section class="novedades">
             <div class="containerNovedades ">
@@ -81,24 +81,24 @@
             <section>
                 <table class="table table-striped table-hover">
                     <thead>
-                      <tr>
-                        <th scope="col">Tipo</th>
-                        <th scope="col">Marca</th>
-                        <th scope="col">Vehículo</th>
-                        <th scope="col">Archivo</th>
-                      </tr>
+                        <tr>
+                            <th scope="col">Tipo</th>
+                            <th scope="col">Marca</th>
+                            <th scope="col">Vehículo</th>
+                            <th scope="col">Archivo</th>
+                        </tr>
                     </thead>
                     <tbody>
                         {% for n in instructivos %}
-                      <tr>
-                        <th scope="row">{{n.tipo}}</th>
-                        <td>{{n.marca}}</td>
-                        <td>{{n.vehiculo}}</td>
-                        <td><a href="../{{n.archivo}}" target="_blank" rel="noopener noreferrer">descargar</a></td>
-                      </tr>
-                      {% endfor %}                      
+                        <tr>
+                            <th scope="row">{{n.tipo}}</th>
+                            <td>{{n.marca}}</td>
+                            <td>{{n.vehiculo}}</td>
+                            <td><a href="../{{n.archivo}}" target="_blank" rel="noopener noreferrer">descargar</a></td>
+                        </tr>
+                        {% endfor %}
                     </tbody>
-                  </table>
+                </table>
             </section>
 
         </section>

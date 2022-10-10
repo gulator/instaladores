@@ -81,15 +81,16 @@ def register (request):
         
         if form.is_valid() and form2.is_valid():
             user = form.save()
-            '''nuevo_usuario = authenticate (
+            nuevo_usuario = authenticate (
                 username = form.cleaned_data['username'],
                 password = form.cleaned_data['password1']
             )
-            login(request, nuevo_usuario)'''
+            login(request, nuevo_usuario)
 
             
             datos = form2.cleaned_data
-            perfil = Profile(   comercio = datos['comercio'],
+            perfil = Profile(   user = datos ['user'],
+                comercio = datos['comercio'],
                                 cuit = datos['cuit'],
                                 telefono = datos['telefono'],
                                 localidad = datos['localidad'],

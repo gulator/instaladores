@@ -44,6 +44,7 @@ class RegisterUserForm (UserCreationForm):
 class RegisterUserForm2 (forms.Form):
     #first_name = forms.CharField(max_length=60)
     #email= forms.EmailField()
+    user = forms.CharField()
     comercio = forms.CharField(max_length=60)
     cuit = forms.IntegerField()
     telefono = forms.IntegerField()
