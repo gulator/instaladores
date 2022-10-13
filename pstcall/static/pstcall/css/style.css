@@ -44,7 +44,7 @@ html, body{
   justify-content: space-evenly;
   margin: 10px 30px;
 }
-.container {
+.containerLogin {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -57,6 +57,12 @@ html, body{
 background: #e0e0e0;
 box-shadow:  4px 4px 8px #bebebe,
              -4px -4px 8px #ffffff;
+}
+
+.novedadSingle{
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
 }
 .formulario {
   height: 120px;
@@ -193,4 +199,51 @@ h5{
   margin: 0;
   height: 40px;
   text-align: end;
+}
+.usuarios{
+  margin: 15px 25px;
+}
+.rojo {
+  color: red !important;
+}
+.verde{
+  color: green !important;
+}
+.busquedaUsuario{
+  display: flex;
+  justify-content: flex-end;
+ 
+}
+.busquedaUsuarioBox{
+  width: 300px;
+}
+
+.img-novedad{
+  width: 50vw;  
+}
+
+.formularioNovedad {
+  
+  max-width: 400px;  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 5px;
+}
+.contNovedad{
+  padding: 5px;
+  margin:2px;
+}
+
+.novedad{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+}
+
+.novedad h3{
+  font-weight: bold;
+  color: #004081;
 }

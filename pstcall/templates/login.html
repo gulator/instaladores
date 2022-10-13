@@ -7,7 +7,12 @@
 
 <main>
     <section class="login">
-        <div class="container ">
+        {% if usuario_creado %}
+        <div class="alert alert-success" role="alert" style="text-align: center;">
+            {{usuario_creado}}
+        </div>
+        {% endif %}
+        <div class="containerLogin ">
             <h5>Ingresa tus credenciales si estas registrados</h5>
             <form class="formulario" action="" method="POST">
                 {% csrf_token %}

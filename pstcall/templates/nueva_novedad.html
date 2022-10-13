@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block bloque_main %}
+
+<main>
+    <div>
+        {% if texto %}
+        <div class="alert alert-warning" role="alert" style="text-align: center;">
+            {{texto}}
+        </div>
+        {% endif %}
+    </div>
+    <section class="usuarios">
+        <form class="formularioNovedad"  method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        {{form.as_p}}
+        {{form.media}}
+
+        <input class="boton" type="submit" value="Cargar">
+
+        </form>
+
+    </section>
+</main>
+
+{% endblock %}

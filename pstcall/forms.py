@@ -44,7 +44,7 @@ class RegisterUserForm (UserCreationForm):
 class RegisterUserForm2 (forms.Form):
     #first_name = forms.CharField(max_length=60)
     #email= forms.EmailField()
-    user = forms.CharField()
+    
     comercio = forms.CharField(max_length=60)
     cuit = forms.IntegerField()
     telefono = forms.IntegerField()
@@ -57,4 +57,9 @@ class NuevoInstructivo (forms.Form):
     marca = forms.CharField(max_length=20)
     vehiculo = forms.CharField(max_length=20)
     archivo = forms.FileField()
-    
+
+class Nueva_NovedadForm(forms.Form):
+    titulo = forms.CharField (max_length=60)
+    subtitulo = forms.CharField (max_length=120)
+    cuerpo = forms.CharField (widget=forms.Textarea)
+    imagen = forms.ImageField ()

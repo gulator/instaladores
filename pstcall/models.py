@@ -56,12 +56,15 @@ class Instructivo (models.Model):
 class Novedad (models.Model):
     titulo = models.CharField(max_length=80)
     subtitulo = models.CharField(max_length=80)
-    cuerpo = RichTextField(blank=True, null=True)
-    fecha = models.DateTimeField()
+    cuerpo = models.TextField(blank=True, null=True)    
     imagen = models.ImageField(upload_to = ruta, null=True, blank=True)
+
+    def __str__(self):
+        return f'Novedad: {self.titulo} | {self.subtitulo} | fecha: {self.fecha}'
 
 class Profile (models.Model):
     user = models.OneToOneField(User, null=True, on_delete = models.CASCADE)
+    usuario = models.CharField(max_length=30)
     comercio = models.CharField(max_length=60)
     cuit = models.IntegerField()
     telefono = models.IntegerField()
@@ -71,3 +74,4 @@ class Profile (models.Model):
 
     def __str__(self): 
         return f'{self.user} - {self.comercio} - {self.localidad} - {self.provincia}'
+

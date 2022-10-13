@@ -6,102 +6,12 @@
 
 
 <main>
-    <!-- <div>
-        <div style="margin: auto;width: 450px;align-content: center;">
-        <div class="shadow p-4 mb-4 rounded blanco">
-            <h3 style="color: #004081;" align="center"> Registrar usuario</h1>
-                <form action="" method="POST" class="formRegistro">
-                    {% csrf_token %}
-                
-                    {{form.as_p}}
-                
-                    <div>
-                        <input type="submit" value="Registrar"  class="boton">
-                    </div>
-                
-                
-                </form>
-                <p style="color: red ;">{{mensaje}}</p>
+    <section class="login">
+        {% if usuario_creado %}
+        <div class="alert alert-success" role="alert" style="text-align: center;">
+            {{usuario_creado}}
         </div>
-        </div>
-    </div> -->
-    <div style="margin: auto;width: 450px;align-content: center;">
-        <section class="shadow p-4 mb-4 rounded blanco">
-            <div>
-                <h3>Formulario de Registro</h3>
-            </div>
-            <form class="formulario registrar" action="" method="POST">
-                {% csrf_token %}
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="nombre">Nombre</span>
-                    <input type="text" class="form-control campo" name="first_name">
-                </div>
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="email">Mail</span>
-                    <input type="email" class="form-control campo" name="email" placeholder="Ej: mail@mail.com">
-                </div>
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="comercio">Comercio</span>
-                    <input type="text" class="form-control campo" name="comercio">
-                </div>
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="cuit">CUIT</span>
-                    <input type="number" class="form-control campo" name="cuit" placeholder="Ej: 30112223334">
-                </div>
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="telefono">Telefono</span>
-                    <input type="number" class="form-control campo" name="telefono" placeholder="Ej: 1144445555">
-                </div>
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="localidad">Localidad</span>
-                    <input type="text" class="form-control campo" name="localidad">
-                </div>
-    
-                <div class="input-group mb-3">
-                    <label class="input-group-text" for="inputGroupSelect01">Provincia</label>
-                    <select class="form-select" id="inputGroupSelect01" name="provincia">
-                        <option value="CABA">CABA</option>
-                        <option value="GBA Norte">GBA Norte</option>
-                        <option value="GBA Oeste">GBA Oeste</option>
-                        <option value="GBA Sur">GBA Sur</option>
-                        <option value="Catamarca">Catamarca</option>
-                        <option value="Córdoba">Córdoba</option>
-                        <option value="Chubut">Chubut</option>
-                    </select>
-                </div>
-                <div class="input-group mb-3">
-                    <label class="input-group-text" for="inputGroupSelect01">Pais</label>
-                    <select class="form-select" id="inputGroupSelect01" name="pais">
-                        <option value="Argentina">Argentina</option>
-                        <option value="Bolivia">Bolivia</option>
-                        <option value="Chile">Chile</option>
-                        <option value="Colombia">Colombia</option>
-                        <option value="Ecuador">Ecuador</option>
-                        <option value="Peru">Peru</option>
-                        <option value="Paraguay">Paraguay</option>
-                        <option value="Uruguay">Uruguay</option>
-                        <option value="Otro">Otro</option>
-                    </select>
-                </div>
-    
-                
-                <input class="boton" type="submit" value="registrarse" class="boton">
-            </form>
-    
-            <!-- usuario = models.CharField(max_length=20)
-                nombre = models.CharField(max_length=60)
-                correo = models.EmailField()
-                telefono = models.IntegerField()
-                localidad = models.CharField(max_length=60)
-                provincia = models.CharField(max_length=20)
-                pais = models.CharField(max_length=20)
-                comercio = models.CharField(max_length=60)
-                cuit = models.IntegerField()-->
-    
-        </section>
-    </div>
-    <section class="texto-login">
-
+        {% endif %}
     </section>
 
 </main>
