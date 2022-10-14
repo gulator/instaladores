@@ -15,5 +15,7 @@ urlpatterns = [
     path('borrar_usuario/<int:id>', views.borrar_usuario, name='borrar_usuario'),
     path('alta_novedad', views.alta_novedad, name="alta_novedad"),
     path('novedades',views.novedades,name='novedades'),
-    path('novedad/<int:id>',views.novedad,name='novedad')
+    path('novedad/<int:id>',views.novedad,name='novedad'),
+    path('cargar',views.cargar, name='cargar'),
+    path('funcion_loader', views.funcion_loader, name="funcion_loader")
 ]

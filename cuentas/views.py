@@ -1,6 +1,7 @@
+import email
 from time import strftime
 from tkinter import N
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.template import loader
 from django.http import HttpResponse
 from pstcall.models import *
@@ -11,7 +12,17 @@ from django.shortcuts import redirect
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
-from django.core.mail import send_mail
+from django.core.mail import send_mail, BadHeaderError
+from django.contrib.auth.forms import PasswordResetForm
+from django.contrib.auth.models import User
+from django.template.loader import render_to_string
+from django.db.models.query_utils import Q
+from django.contrib.auth.tokens import default_token_generator
+from django.utils.encoding import force_bytes
+from django.utils.http import urlsafe_base64_encode
+
+
+
 import random
 
 # Create your views here.
@@ -19,7 +30,7 @@ import random
 
 def login_request(request):
 
-    instructivos = Instructivo.objects.all()
+    instructivos = Instructivo.objects.all().order_by("tipo","marca", "vehiculo")
     novedades = Novedad.objects.all()
 
     if request.method == "POST":
@@ -100,14 +111,14 @@ def cambiar_password(request):
 
 def register(request):
 
-    instructivos = Instructivo.objects.all()
+    instructivos = Instructivo.objects.all().order_by("tipo","marca", "vehiculo")
     if request.method == "POST":
         form = RegisterUserForm(request.POST)
         form2 = RegisterUserForm2(request.POST)
         if form.is_valid():
-            print('Form1 es valido')
+            print(form.save())
         else:
-            print (form)        
+            print (form.save())        
         if form2.is_valid():
             print('Form2 es valido')
         else:
@@ -167,3 +178,38 @@ def logout_usuario(request):
     logout(request)
 
     return redirect("Login")
+
+def password_reset_request (request):
+    if request.method == 'POST':
+        password_form = PasswordResetForm(request.POST)
+        if password_form.is_valid():
+            data = password_form.cleaned_data['email']
+            user_email = User.objects.filter(Q(email=data))
+            if user_email.exists():
+                for user in user_email:
+                    subject ='Cambio de contraseña'
+                    email_template_name = 'password_message.txt'
+                    parametros = {
+                        'usuario':user.username,
+                        'email': user.email,
+                        'domain':'127.0.0.1:8000',
+                        'site_name': 'Instaladores Positron',
+                        'uid': urlsafe_base64_encode (force_bytes(user.pk)),
+                        'token': default_token_generator.make_token(user),
+                        'protocol': 'http',
+                    }
+                    email = render_to_string(email_template_name, parametros)
+                    try:
+                        send_mail(subject, email, '',[user.email], fail_silently=False)
+                    except:
+                        return HttpResponse('Invalid Header')    
+                    return redirect('password_reset_done')
+
+    else:   
+        password_form = PasswordResetForm()
+
+    context = {
+        'password_form':password_form
+    }
+
+    return render (request, 'password_reset.html', context)

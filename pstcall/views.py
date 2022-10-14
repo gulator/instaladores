@@ -20,7 +20,7 @@ def registro(request):
 
 
 def inicio(request):
-    instructivos = Instructivo.objects.all().order_by("marca", "vehiculo")
+    instructivos = Instructivo.objects.all().order_by("tipo","marca", "vehiculo")
     novedades = Novedad.objects.all()
 
     return render(
@@ -46,7 +46,7 @@ def buscar_instructivo(request):
                 {"instructivos": instructivos, "novedades": novedades},
             )
         else:
-            instructivos = Instructivo.objects.all()
+            instructivos = Instructivo.objects.all().order_by("tipo","marca", "vehiculo")
             return render(
                 request,
                 "index.html",
@@ -57,7 +57,7 @@ def buscar_instructivo(request):
                 },
             )
     else:
-        instructivos = Instructivo.objects.all()
+        instructivos = Instructivo.objects.all().order_by("tipo","marca", "vehiculo")
         return render(
             request,
             "index.html",
@@ -68,7 +68,7 @@ def buscar_instructivo(request):
 def subir_instructivo(request):
     marcas = Marca.objects.all().order_by("marca")
     tipos = Tipo_Manual.objects.all().order_by("tipo")
-    instructivos = Instructivo.objects.all()
+    instructivos = Instructivo.objects.all().order_by("tipo","marca", "vehiculo")
     novedades = Novedad.objects.all()
 
     if request.method == "POST":
@@ -191,3 +191,15 @@ def alta_novedad(request):
             return render(request, "nueva_novedad.html", {"form": form,'texto':texto})
 
     return render(request, "nueva_novedad.html", {"form": form})
+
+def cargar (request):
+    return render (request,'loader.html')
+
+def funcion_loader (request):
+    usuario = [['chompen4','chompen4@mail.com'],['chompen2','chompen2@mail.com'],['chompen3','chompen3@mail.com']]
+    for n in usuario:
+        nuevo_usuario = RegisterUserForm({'username':n[0],'email':n[1],'password1':'juancito1','password2':'juancito1'})
+        print(nuevo_usuario)
+        nuevo_usuario.save()
+        
+    return HttpResponse()
