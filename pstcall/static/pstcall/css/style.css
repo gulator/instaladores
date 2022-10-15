@@ -98,6 +98,13 @@ box-shadow:  4px 4px 8px #bebebe,
     color: #e0e0e0;
     cursor: pointer;
 }
+.boton:hover{
+  border-radius: 4px;
+  background: linear-gradient(145deg, #0260be, #004285);
+  box-shadow:  2px 2px 4px #bebebe,
+  -2px -2px 4px #ffffff;
+}
+
 .boton:active{
     border-radius: 4px;
     background: linear-gradient(145deg, #004081, #004c99);
@@ -246,4 +253,17 @@ h5{
 .novedad h3{
   font-weight: bold;
   color: #004081;
+}
+
+.imgNovedad{
+  width: 35vw;
+}
+.seccionNovedad{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.heavyBlue{
+  font-weight: bold;
+  color: #004081 !important;
 }

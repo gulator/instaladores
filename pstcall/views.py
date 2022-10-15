@@ -21,7 +21,7 @@ def registro(request):
 
 def inicio(request):
     instructivos = Instructivo.objects.all().order_by("tipo","marca", "vehiculo")
-    novedades = Novedad.objects.all()
+    novedades = Novedad.objects.all().order_by("-id")
 
     return render(
         request, "index.html", {"instructivos": instructivos, "novedades": novedades}

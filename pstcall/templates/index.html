@@ -23,14 +23,38 @@
             <div class="containerNovedades ">
                 <h4>Novedades</h4>
                 {% for nov in novedades %}
-                <div class="card margenCard">
+                <div class="card border-info mb-3 margenCard">
                     <div class="card-body">
-                        <h5 class="card-title">{{nov.titulo}}</h5>
+                        <h5 class="card-title heavyBlue">{{nov.titulo}}</h5>
                         <p class="card-text">{{nov.subtitulo}}</p>
-                        <a href="{% url 'novedad' nov.id %}" class="btn btn-primary">Ver más</a>
+                        <button type="button" class="boton" data-bs-toggle="modal" 
+                            data-bs-target="#modal{{nov.id}}">
+                            Ver más
+                         </button> <!--btn btn-primary-->
                     </div>
-                </div>  
-                {% endfor %}              
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="modal{{nov.id}}" tabindex="-1" aria-labelledby="exampleModalLabel{{nov.id}}"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h2 class="modal-title fs-5 heavyBlue" id="exampleModalLabel{{nov.id}}">{{nov.titulo}}
+                                </h2>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <h5>{{nov.subtitulo}}</h5>
+                                <p>{{nov.cuerpo}}</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
             </div>
         </section>
         <section class="instructivos">

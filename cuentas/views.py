@@ -29,42 +29,52 @@ import random
 
 
 def login_request(request):
+    if request.user.is_authenticated:
 
-    instructivos = Instructivo.objects.all().order_by("tipo","marca", "vehiculo")
-    novedades = Novedad.objects.all()
+        instructivos = Instructivo.objects.all().order_by("tipo","marca", "vehiculo")
+        novedades = Novedad.objects.all().order_by("-id")
 
-    if request.method == "POST":
+        return render(
+            request, "index.html", {"instructivos": instructivos, "novedades": novedades}
+        )    
 
-        formulario = Login_formulario(request, data=request.POST)
+    else:
+        instructivos = Instructivo.objects.all().order_by("tipo","marca", "vehiculo")
+        novedades = Novedad.objects.all().order_by("-id")
 
-        if formulario.is_valid():
-            usuario = formulario.cleaned_data.get("username")
-            contrasenia = formulario.cleaned_data.get("password")
+        if request.method == "POST":
 
-            user = authenticate(username=usuario, password=contrasenia)
+            formulario = Login_formulario(request, data=request.POST)
 
-            if user is not None:
-                login(request, user)
-                return render(request, "index.html", {"instructivos": instructivos,'novedades':novedades})
+            if formulario.is_valid():
+                usuario = formulario.cleaned_data.get("username")
+                contrasenia = formulario.cleaned_data.get("password")
+
+                user = authenticate(username=usuario, password=contrasenia)
+
+                if user is not None:
+                    login(request, user)
+                    return render(request, "index.html", {"instructivos": instructivos,'novedades':novedades})
+                else:
+                    return render(
+                        request, "login.html", {"mensaje": "Error. Formulario erroneo."}
+                    )
+
             else:
+                formulario = Login_formulario()
                 return render(
-                    request, "login.html", {"mensaje": "Error. Formulario erroneo."}
+                    request,
+                    "login.html",
+                    {
+                        "formulario": formulario,
+                        "mensaje": "Error. Datos de ingreso incorrectos",
+                    },
                 )
 
-        else:
-            formulario = Login_formulario()
-            return render(
-                request,
-                "login.html",
-                {
-                    "formulario": formulario,
-                    "mensaje": "Error. Datos de ingreso incorrectos",
-                },
-            )
+        formulario = Login_formulario()
 
-    formulario = Login_formulario()
-
-    return render(request, "login.html", {"formulario": formulario})
+        return render(request, "login.html", {"formulario": formulario})
+        
 
 
 def cambiar_password(request):

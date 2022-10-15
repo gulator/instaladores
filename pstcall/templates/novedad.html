@@ -5,11 +5,11 @@
 <main>
     <section class="container novedadSingle">
         {% if novedad %}
-        <div class="row">
+        <div class="row seccionNovedad">
             <div class="col-lg-6 col-12">
-                <img  src="{{novedad.imagen.url}}" alt="Imagen de la novedad">
+                <img  class="imgNovedad" src="{{novedad.imagen.url}}" alt="Imagen de la novedad">
             </div>
-            <div class="novedad col-lg-6 col-12">
+            <div class="col-lg-6 col-12 novedad">
                 <h3>{{novedad.titulo}}</h3>
                 <h4>{{novedad.subtitulo}}</h4>
                 <p>{{novedad.cuerpo}}</p>

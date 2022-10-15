@@ -60,7 +60,7 @@ class Novedad (models.Model):
     imagen = models.ImageField(upload_to = ruta, null=True, blank=True)
 
     def __str__(self):
-        return f'Novedad: {self.titulo} | {self.subtitulo} | fecha: {self.fecha}'
+        return f'Novedad: {self.titulo} | {self.subtitulo}'
 
 class Profile (models.Model):
     user = models.OneToOneField(User, null=True, on_delete = models.CASCADE)
