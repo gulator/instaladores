@@ -19,12 +19,12 @@
 
 <body>
     <header>
-        <div class="header-primario">            
+        <div class="header-primario">
             <img class="img-fluid logo" src="{% static 'pstcall/img/logo-positron.png' %}" alt="logo positron">
         </div>
         <div class="header-secundario">
             <nav class="navbar navbar-expand-lg azulado">
-                <div class="container-fluid">                    
+                <div class="container-fluid">
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -32,25 +32,27 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            {% if user.is_superuser %}                              
+                            {% if user.is_superuser %}
                             <li class="nav-item">
                                 <a class="nav-link" aria-current="page" href="{% url 'alta_novedad' %}">Alta Novedad</a>
-                            </li>                            
-                            {% endif %}   
+                            </li>
+                            {% endif %}
                             {% if user.is_staff %}
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="{% url 'subir_instructivo' %}">Subir Instructivo</a>
-                            </li>   
+                                <a class="nav-link" aria-current="page" href="{% url 'subir_instructivo' %}">Subir
+                                    Instructivo</a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" aria-current="page" href="{% url 'usuarios' %}">Usuarios</a>
-                            </li>   
-                            {% endif %}                          
+                            </li>
+                            {% endif %}
                             {% if user.is_authenticated %}
                             <li class="nav-item">
                                 <a class="nav-link" aria-current="page" href="{% url 'inicio' %}">Principal</a>
-                            </li>   
+                            </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Lista de precios</a>
+                                <a class="nav-link" href="https://bit.ly/listaPositron" target="_blank"
+                                    rel="noopener noreferrer">Lista de precios</a>
                             </li>
 
                             <li class="nav-item">
@@ -58,11 +60,11 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'Logout' %}">(Logout)</a>
-                            </li> 
+                            </li>
                             {% else %}
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'Login' %}">Login</a>
-                            </li> 
+                            </li>
                             {% endif %}
                         </ul>
                     </div>
@@ -75,7 +77,7 @@
 
     {% block bloque_registro %}
     {% endblock %}
-    
+
     {% block content %}
     {% endblock %}
 
@@ -94,10 +96,10 @@
     <script>
         const myModal = document.getElementById('myModal')
         const myInput = document.getElementById('myInput')
-    
-        myModal.addEventListener('shown.bs.modal', () => {myInput.focus()})
+
+        myModal.addEventListener('shown.bs.modal', () => { myInput.focus() })
     </script>
-    
+
 </body>
 
 </html>

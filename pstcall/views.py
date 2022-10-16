@@ -106,7 +106,7 @@ def subir_instructivo(request):
 def borrar_instructivo(request, id):
     novedades = Novedad.objects.all().order_by("-id")
     instructivo = Instructivo.objects.get(id=id)
-    instructivos = User.objects.all().order_by("username")
+    instructivos = Instructivo.objects.all().order_by("tipo", "marca", "vehiculo")
 
     instructivo.delete()
 
@@ -114,7 +114,7 @@ def borrar_instructivo(request, id):
 
 
 def usuarios(request):
-    usuarios = User.objects.all().order_by("username")
+    usuarios = User.objects.all().order_by("is_active","username")
 
     return render(request, "usuarios.html", {"usuarios": usuarios})
 
@@ -125,24 +125,24 @@ def buscar_usuario(request):
 
     if request.GET["email"]:
         mail = request.GET["email"]
-        usuarios = User.objects.filter(email__icontains=mail).order_by("username")
+        usuarios = User.objects.filter(email__icontains=mail).order_by("is_active","username")
         texto2 = f'no se han encontrado usuarios registrados con mail: "{mail}"'
 
         if usuarios:
             return render(request, "usuarios.html", {"usuarios": usuarios})
         else:
-            usuarios = User.objects.all().order_by("username")
+            usuarios = User.objects.all().order_by("is_active","username")
             return render(
                 request, "usuarios.html", {"usuarios": usuarios, "texto2": texto2}
             )
     else:
-        usuarios = User.objects.all().order_by("username")
+        usuarios = User.objects.all().order_by("is_active","username")
         return render(request, "usuarios.html", {"usuarios": usuarios, "texto": texto})
 
 
 def habilitar_usuario(request, id):
     usuario = User.objects.get(id=id)
-    usuarios = User.objects.all().order_by("username")
+    usuarios = User.objects.all().order_by("is_active","username")
 
     usuario.is_active = True
     usuario.save()
@@ -152,7 +152,7 @@ def habilitar_usuario(request, id):
 
 def deshabilitar_usuario(request, id):
     usuario = User.objects.get(id=id)
-    usuarios = User.objects.all().order_by("username")
+    usuarios = User.objects.all().order_by("is_active","username")
 
     usuario.is_active = False
     usuario.save()
@@ -162,7 +162,7 @@ def deshabilitar_usuario(request, id):
 
 def borrar_usuario(request, id):
     usuario = User.objects.get(id=id)
-    usuarios = User.objects.all().order_by("username")
+    usuarios = User.objects.all().order_by("is_active","username")
 
     usuario.delete()
 
