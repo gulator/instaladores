@@ -10,6 +10,8 @@ from django.shortcuts import redirect
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
+import csv
+import codecs
 import random
 
 # Create your views here.
@@ -101,7 +103,7 @@ def subir_instructivo(request):
 
 
 def usuarios(request):
-    usuarios = User.objects.all()
+    usuarios = User.objects.all().order_by("username")
 
     return render(request, "usuarios.html", {"usuarios": usuarios})
 
@@ -112,24 +114,24 @@ def buscar_usuario(request):
 
     if request.GET["email"]:
         mail = request.GET["email"]
-        usuarios = User.objects.filter(email__icontains=mail)
+        usuarios = User.objects.filter(email__icontains=mail).order_by("username")
         texto2 = f'no se han encontrado usuarios registrados con mail: "{mail}"'
 
         if usuarios:
             return render(request, "usuarios.html", {"usuarios": usuarios})
         else:
-            usuarios = User.objects.all()
+            usuarios = User.objects.all().order_by("username")
             return render(
                 request, "usuarios.html", {"usuarios": usuarios, "texto2": texto2}
             )
     else:
-        usuarios = User.objects.all()
+        usuarios = User.objects.all().order_by("username")
         return render(request, "usuarios.html", {"usuarios": usuarios, "texto": texto})
 
 
 def habilitar_usuario(request, id):
     usuario = User.objects.get(id=id)
-    usuarios = User.objects.all
+    usuarios = User.objects.all().order_by("username")
 
     usuario.is_active = True
     usuario.save()
@@ -139,7 +141,7 @@ def habilitar_usuario(request, id):
 
 def deshabilitar_usuario(request, id):
     usuario = User.objects.get(id=id)
-    usuarios = User.objects.all
+    usuarios = User.objects.all().order_by("username")
 
     usuario.is_active = False
     usuario.save()
@@ -149,7 +151,7 @@ def deshabilitar_usuario(request, id):
 
 def borrar_usuario(request, id):
     usuario = User.objects.get(id=id)
-    usuarios = User.objects.all
+    usuarios = User.objects.all().order_by("username")
 
     usuario.delete()
 
@@ -192,14 +194,5 @@ def alta_novedad(request):
 
     return render(request, "nueva_novedad.html", {"form": form})
 
-def cargar (request):
-    return render (request,'loader.html')
 
-def funcion_loader (request):
-    usuario = [['chompen4','chompen4@mail.com'],['chompen2','chompen2@mail.com'],['chompen3','chompen3@mail.com']]
-    for n in usuario:
-        nuevo_usuario = RegisterUserForm({'username':n[0],'email':n[1],'password1':'juancito1','password2':'juancito1'})
-        print(nuevo_usuario)
-        nuevo_usuario.save()
-        
-    return HttpResponse()
+    
