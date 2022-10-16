@@ -125,7 +125,7 @@ h5{
 }
 
 .novedades{
-  width: 30vw;
+  /*width: 30vw;*/
   margin: 5px;
   padding: 15px;
   border: 1px solid #bebebe;
@@ -135,7 +135,7 @@ h5{
 
 }
 .instructivos{
-  width: 60vw;
+  /*width: 60vw;*/
   margin: 5px;
   padding: 15px;
   border: 1px solid #bebebe;
@@ -147,10 +147,20 @@ h5{
   display: flex;
   justify-content: space-between;
 }
-.principal{
+.principal{ 
   display: flex;
   justify-content: space-around;
 }
+
+.inicioInstructivos{
+  margin-right: 8px;
+  margin-left: 0;
+  display: flex;
+  justify-content: space-around;
+  
+}
+
+
 .anchoInput{
   width: 250px;
 }

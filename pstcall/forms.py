@@ -56,6 +56,7 @@ class NuevoInstructivo (forms.Form):
     tipo = forms.CharField(max_length=20)
     marca = forms.CharField(max_length=20)
     vehiculo = forms.CharField(max_length=20)
+    link = forms.CharField(max_length=100)
     archivo = forms.FileField()
 
 class Nueva_NovedadForm(forms.Form):

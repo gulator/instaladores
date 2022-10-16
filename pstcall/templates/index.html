@@ -18,88 +18,104 @@
         </div>
         {% endif %}
     </div>
-    <principal class="principal">
-        <section class="novedades">
-            <div class="containerNovedades ">
-                <h4>Novedades</h4>
-                {% for nov in novedades %}
-                <div class="card border-info mb-3 margenCard">
-                    <div class="card-body">
-                        <h5 class="card-title heavyBlue">{{nov.titulo}}</h5>
-                        <p class="card-text">{{nov.subtitulo}}</p>
-                        <button type="button" class="boton" data-bs-toggle="modal" 
-                            data-bs-target="#modal{{nov.id}}">
-                            Ver más
-                         </button> <!--btn btn-primary-->
+    <principal class="container">
+        <div class="row inicioInstructivos">
+            <section class="col-lg-3 col-12 novedades">
+                <div class="containerNovedades ">
+                    <h4>Novedades</h4>
+                    {% for nov in novedades %}
+                    <div class="card border-info mb-3 margenCard">
+                        <div class="card-body">
+                            <h5 class="card-title heavyBlue">{{nov.titulo}}</h5>
+                            <p class="card-text">{{nov.subtitulo}}</p>
+                            <button type="button" class="boton" data-bs-toggle="modal"
+                                data-bs-target="#modal{{nov.id}}">
+                                Ver más
+                            </button>
+                            <!--btn btn-primary-->
+                        </div>
                     </div>
-                </div>
-                <!-- Modal -->
-                <div class="modal fade" id="modal{{nov.id}}" tabindex="-1" aria-labelledby="exampleModalLabel{{nov.id}}"
-                    aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h2 class="modal-title fs-5 heavyBlue" id="exampleModalLabel{{nov.id}}">{{nov.titulo}}
-                                </h2>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <h5>{{nov.subtitulo}}</h5>
-                                <p>{{nov.cuerpo}}</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="modal{{nov.id}}" tabindex="-1"
+                        aria-labelledby="exampleModalLabel{{nov.id}}" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h2 class="modal-title fs-5 heavyBlue" id="exampleModalLabel{{nov.id}}">
+                                        {{nov.titulo}}
+                                    </h2>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <h5>{{nov.subtitulo}}</h5>
+                                    <p>{{nov.cuerpo}}</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Cerrar</button>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
-            </div>
-        </section>
-        <section class="instructivos">
-            <section class="containerInstructivos">
-                <h4>Instructivos</h4>
-                <form class="formBusqueda" action="/pstcall/buscar_instructivo">
-                    <div class="input-group mb-3 borrar">
-                        <input type="text" class="form-control anchoInput" placeholder="Buscar por vehículo"
-                            aria-label="modelo vehiculo" aria-describedby="button-addon2" name="vehiculo">
-                        <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i><svg
-                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-search" viewBox="0 0 16 16">
-                                    <path
-                                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                                </svg></i></button>
-                    </div>
-                    <div class="borrar">
-                        <a class="borrarMute" href="{% url 'inicio' %}">borrar filtro</a>
-                    </div>
-                </form>
             </section>
-            <section>
-                <table class="table table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <th scope="col">Tipo</th>
-                            <th scope="col">Marca</th>
-                            <th scope="col">Vehículo</th>
-                            <th scope="col">Archivo</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for n in instructivos %}
-                        <tr>
-                            <th scope="row">{{n.tipo}}</th>
-                            <td>{{n.marca}}</td>
-                            <td>{{n.vehiculo}}</td>
-                            <td><a href="../{{n.archivo}}" target="_blank" rel="noopener noreferrer">descargar</a></td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+            <section class="col-lg-8 col-12 instructivos">
+                <section class="containerInstructivos">
+                    <h4>Instructivos</h4>
+                    <form class="formBusqueda" action="/pstcall/buscar_instructivo">
+                        <div class="input-group mb-3 borrar">
+                            <input type="text" class="form-control anchoInput" placeholder="Buscar por vehículo"
+                                aria-label="modelo vehiculo" aria-describedby="button-addon2" name="vehiculo">
+                            <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-search" viewBox="0 0 16 16">
+                                        <path
+                                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                                    </svg></i></button>
+                        </div>
+                        <div class="borrar">
+                            <a class="borrarMute" href="{% url 'inicio' %}">borrar filtro</a>
+                        </div>
+                    </form>
+                </section>
+                <section>
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Tipo</th>
+                                <th scope="col">Marca</th>
+                                <th scope="col">Vehículo</th>
+                                <th scope="col">Archivo</th>
+                                {% if user.is_staff %}
+                                <th scope="col"></th>
+                                {% endif %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for n in instructivos %}
+                            <tr>
+                                <th scope="row">{{n.tipo}}</th>
+                                <td>{{n.marca}}</td>
+                                <td>{{n.vehiculo}}</td>
+                                {% if n.link != 'null' %}
+                                <td><a href="https://www.positron.com.ar/app/uploads/infoautos/{{n.link}}"
+                                        target="_blank" rel="noopener noreferrer">descargar</a></td>
+                                {% else %}
+                                <td><a href="../{{n.archivo}}" target="_blank" rel="noopener noreferrer">descargar</a>
+                                </td>
+                                {% endif %}
+                                {% if user.is_staff %}
+                                <td><a href="{% url 'borrar_instructivo' n.id %}">borrar</a></td>
+                                {% endif %}
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </section>
             </section>
-
-        </section>
+        </div>
     </principal>
 </main>
 

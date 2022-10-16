@@ -22,7 +22,7 @@ def registro(request):
 
 
 def inicio(request):
-    instructivos = Instructivo.objects.all().order_by("tipo","marca", "vehiculo")
+    instructivos = Instructivo.objects.all().order_by("tipo", "marca", "vehiculo")
     novedades = Novedad.objects.all().order_by("-id")
 
     return render(
@@ -33,11 +33,11 @@ def inicio(request):
 def buscar_instructivo(request):
 
     texto = f"Ingrese un texto en el campo de búsqueda"
-    novedades = Novedad.objects.all()
+    novedades = Novedad.objects.all().order_by("-id")
 
     if request.GET["vehiculo"]:
         vehiculo = request.GET["vehiculo"]
-        instructivos = Instructivo.objects.filter(vehiculo__icontains=vehiculo)
+        instructivos = Instructivo.objects.filter(vehiculo__icontains=vehiculo).order_by("tipo", "marca", "vehiculo")
 
         texto2 = f'no se han encontrado instructivos para el vehículo "{vehiculo}"'
 
@@ -48,7 +48,9 @@ def buscar_instructivo(request):
                 {"instructivos": instructivos, "novedades": novedades},
             )
         else:
-            instructivos = Instructivo.objects.all().order_by("tipo","marca", "vehiculo")
+            instructivos = Instructivo.objects.all().order_by(
+                "tipo", "marca", "vehiculo"
+            )
             return render(
                 request,
                 "index.html",
@@ -59,7 +61,7 @@ def buscar_instructivo(request):
                 },
             )
     else:
-        instructivos = Instructivo.objects.all().order_by("tipo","marca", "vehiculo")
+        instructivos = Instructivo.objects.all().order_by("tipo", "marca", "vehiculo")
         return render(
             request,
             "index.html",
@@ -70,7 +72,7 @@ def buscar_instructivo(request):
 def subir_instructivo(request):
     marcas = Marca.objects.all().order_by("marca")
     tipos = Tipo_Manual.objects.all().order_by("tipo")
-    instructivos = Instructivo.objects.all().order_by("tipo","marca", "vehiculo")
+    instructivos = Instructivo.objects.all().order_by("tipo", "marca", "vehiculo")
     novedades = Novedad.objects.all()
 
     if request.method == "POST":
@@ -100,6 +102,15 @@ def subir_instructivo(request):
             )
 
     return render(request, "panel.html", {"marcas": marcas, "tipos": tipos})
+
+def borrar_instructivo(request, id):
+    novedades = Novedad.objects.all().order_by("-id")
+    instructivo = Instructivo.objects.get(id=id)
+    instructivos = User.objects.all().order_by("username")
+
+    instructivo.delete()
+
+    return render(request, "index.html", {"instructivos": instructivos,"novedades":novedades})
 
 
 def usuarios(request):
@@ -173,26 +184,25 @@ def alta_novedad(request):
     form = Nueva_NovedadForm()
 
     if request.method == "POST":
-        formulario = Nueva_NovedadForm(request.POST,request.FILES)
-        
+        formulario = Nueva_NovedadForm(request.POST, request.FILES)
+
         if formulario.is_valid():
             datos = formulario.cleaned_data
 
-            novedad = Novedad (
-                titulo = datos['titulo'],
-                subtitulo = datos['subtitulo'],
-                cuerpo = datos['cuerpo'],
-                imagen = datos['imagen'],
+            novedad = Novedad(
+                titulo=datos["titulo"],
+                subtitulo=datos["subtitulo"],
+                cuerpo=datos["cuerpo"],
+                imagen=datos["imagen"],
             )
 
             novedad.save()
 
             return render(request, "nueva_novedad.html", {"form": form})
         else:
-            texto = f'Uno de los campos en el formulario esta incorrecto'
-            return render(request, "nueva_novedad.html", {"form": form,'texto':texto})
+            texto = f"Uno de los campos en el formulario esta incorrecto"
+            return render(request, "nueva_novedad.html", {"form": form, "texto": texto})
 
     return render(request, "nueva_novedad.html", {"form": form})
 
 
-    
