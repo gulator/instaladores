@@ -13,22 +13,22 @@
         </div>
         {% endif %}
         <div class="containerLogin ">
-            <h5>Ingresa tus credenciales si estas registrados</h5>
+            <div>
+                <h5>Ingresa tus credenciales si estas registrados</h5>
+            </div>
             <form class="formulario" action="" method="POST">
                 {% csrf_token %}
-                
+
                 {{formulario.as_p}}
 
                 <input class="boton" type="submit" value="ingresar">
             </form>
-            <p><a href="{% url 'password_reset' %}">¿Olvidó su contraseña?</a></p>
-            <hr>
+            <p><a href="{% url 'password_reset' %}">¿Olvidó su contraseña?</a></p>            
             <a href="{% url 'Register' %}">registrarse</a>
+            
         </div>
     </section>
-    <section class="texto-login">
-
-    </section>
+    
 
 </main>
 

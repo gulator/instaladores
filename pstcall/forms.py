@@ -25,9 +25,9 @@ class CambiarPassword (UserCreationForm):
         help_texts = {k:"" for k in fields}
 
 class RegisterUserForm (UserCreationForm):
-    email = forms.EmailField(label='Mail', widget=forms.EmailInput(attrs={'class':'form-control','Style':'width: 300px','placeholder':'Ej: mail@mail.com'}))
-    password1 = forms.CharField(label=('Contraseña'), widget=forms.PasswordInput(attrs={'class':'form-control','Style':'width: 300px','placeholder':'ingrese una contraseña'}))
-    password2 = forms.CharField(label=('Confirmar'), widget=forms.PasswordInput(attrs={'class':'form-control','Style':'width: 300px','placeholder':'repita la contraseña'}))
+    email = forms.EmailField(label='Mail', widget=forms.EmailInput(attrs={'class':'form-control','placeholder':'Ej: mail@mail.com'}))
+    password1 = forms.CharField(label=('Contraseña'), widget=forms.PasswordInput(attrs={'class':'form-control','placeholder':'ingrese una contraseña'}))
+    password2 = forms.CharField(label=('Confirmar'), widget=forms.PasswordInput(attrs={'class':'form-control','placeholder':'repita la contraseña'}))
     
     class Meta:
         model = User
