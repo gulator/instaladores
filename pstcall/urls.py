@@ -17,6 +17,7 @@ urlpatterns = [
     path('alta_novedad', views.alta_novedad, name="alta_novedad"),
     path('novedades',views.novedades,name='novedades'),
     path('novedad/<int:id>',views.novedad,name='novedad'),
+    path('usuarios_csv',views.usuarios_csv,name='usuarios_csv'),
     #path('cargar',views.cargar, name='cargar'),
     #path('funcion_loader', views.funcion_loader, name="funcion_loader")
 ]

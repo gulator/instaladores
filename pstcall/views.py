@@ -1,4 +1,6 @@
 import email
+import profile
+from urllib import response
 from django.shortcuts import render
 from django.template import loader
 from django.http import HttpResponse
@@ -206,3 +208,23 @@ def alta_novedad(request):
     return render(request, "nueva_novedad.html", {"form": form})
 
 
+def usuarios_csv (request):
+
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename=usuarios.csv'
+
+    writer = csv.writer(response)
+
+    writer.writerow (['usuario','nombre','mail','telefono','Localidad','Provinca','Comercio','CUIT','Pais'])
+
+    usuarios = User.objects.all()
+    
+    perfil = Profile.objects.all()
+
+    #for u, p in zip(usuarios,perfil):
+    for u in usuarios:
+        for p in perfil:
+            if (u.username == p.usuario):
+                writer.writerow([u.username, p.usuario, u.email, p.telefono, p.localidad, p.provincia, p.comercio, p.cuit, p.pais])
+
+    return response

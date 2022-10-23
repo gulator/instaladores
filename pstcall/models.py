@@ -73,6 +73,6 @@ class Profile (models.Model):
     provincia = models.CharField(max_length=60)
     pais = models.CharField(max_length=60)
 
-    def __str__(self): 
-        return f'{self.user} - {self.comercio} - {self.localidad} - {self.provincia}'
+    '''def __str__(self): 
+        return ([{self.user},{self.comercio},{self.localidad},{self.provincia},{self.telefono},{self.cuit},{self.pais}])'''
 
