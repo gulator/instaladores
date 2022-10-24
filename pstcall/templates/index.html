@@ -98,14 +98,9 @@
                             <tr>
                                 <th scope="row">{{n.tipo}}</th>
                                 <td>{{n.marca}}</td>
-                                <td>{{n.vehiculo}}</td>
-                                {% if n.link != 'null' %}
-                                <td><a href="https://www.positron.com.ar/app/uploads/infoautos/{{n.link}}"
-                                        target="_blank" rel="noopener noreferrer">descargar</a></td>
-                                {% else %}
-                                <td><a href="../{{n.archivo}}" target="_blank" rel="noopener noreferrer">descargar</a>
-                                </td>
-                                {% endif %}
+                                <td>{{n.vehiculo}}</td>                                
+                                <td><a href="{% url 'hit_instructivo' n.id %}"
+                                        target="_blank" rel="noopener noreferrer">descargar</a></td>                               
                                 {% if user.is_staff %}
                                 <td><a href="{% url 'borrar_instructivo' n.id %}">borrar</a></td>
                                 {% endif %}

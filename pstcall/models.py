@@ -50,6 +50,7 @@ class Instructivo (models.Model):
     vehiculo = models.CharField(max_length=40)
     link = models.CharField(max_length=100, null=True, blank=True)
     archivo = models.FileField(upload_to = ruta, null=True, blank=True)
+    hits = models.IntegerField()
 
     def __str__(self): 
         return f'Archivo: {self.marca}-{self.tipo}-{self.vehiculo}'
@@ -87,6 +88,7 @@ class Manual (models.Model):
     titulo = models.CharField(max_length=150)
     link = models.CharField(max_length=150)
     archivo = models.FileField(upload_to = ruta, null=True, blank=True)
+    hits = models.IntegerField()
     
     def __str__(self):
         return f'Categoria: {self.categoria} - {self.titulo}'

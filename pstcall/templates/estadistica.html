@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block bloque_main %}
+
+
+<main>
+    
+    <principal class="container">
+        <div class="row inicioInstructivos">
+            <section class="col-lg-8 col-12 instructivos">
+                <section class="containerInstructivos">
+                    <h4 class="heavyBlue">Top 15 Instructivos</h4>                    
+                </section>
+                <section>
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Tipo</th>
+                                <th scope="col">Marca</th>
+                                <th scope="col">Vehículo</th>                                
+                                <th scope="col">Descargas</th>                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            {% for i in instructivos|slice:":15" %}
+                            <tr>
+                                <th scope="row">{{ forloop.counter }}</th>
+                                <td>{{i.tipo}}</td>
+                                <td>{{i.marca}}</td>
+                                <td>{{i.vehiculo}}</td>
+                                <td>{{i.hits}}</td>
+                                
+                            </tr>
+                            {% endfor %}
+                            
+                        </tbody>
+                    </table>
+                </section>
+
+                
+                <br>
+                <section class="containerInstructivos">
+                    <h4 class="heavyBlue">Top 10 Manuales</h4>                    
+                </section>
+                <section>
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Categoria</th>
+                                <th scope="col">Titulo</th>                                
+                                <th scope="col">Descargas</th>                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            {% for n in manuales|slice:":10" %}
+                            <tr>
+                                <th scope="row">{{ forloop.counter }}</th>
+                                <td>{{n.categoria}}</td>
+                                <td>{{n.titulo}}</td>
+                                <td>{{n.hits}}</td>
+                                
+                            </tr>
+                            {% endfor %}
+                            
+                        </tbody>
+                    </table>
+                </section>
+            </section>
+        </div>
+    </principal>
+</main>
+
+{% endblock %}

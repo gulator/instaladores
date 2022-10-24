@@ -1,9 +1,10 @@
 import email
 import profile
+import re
 from urllib import response
 from django.shortcuts import render
 from django.template import loader
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from pstcall.models import *
 from pstcall.forms import *
 from datetime import *
@@ -314,4 +315,38 @@ def borrar_manual(request, id):
 
     return render(request, "manuales.html", {"manuales": manuales})
 
+def hit_instructivo(request, id):
+    
+    instructivo = Instructivo.objects.get(id=id)
+    
+    instructivo.hits += 1
+    link = instructivo.link
+    archivo = instructivo.archivo
+    instructivo.save()
+
+    if instructivo.link != 'null' :
+        return HttpResponseRedirect (f'https://www.positron.com.ar/app/uploads/infoautos/{link}')
+    else:
+        return HttpResponseRedirect (f'http://127.0.0.1:8000/{archivo}')
+
+def hit_manual(request, id):
+    
+    manual = Manual.objects.get(id=id)
+    
+    manual.hits += 1
+    link = manual.link
+    archivo = manual.archivo
+    manual.save()
+
+    if manual.link != 'null' :
+        return HttpResponseRedirect (f'https://www.positron.com.ar/app/uploads/manuales/{link}')
+    else:
+        return HttpResponseRedirect (f'http://127.0.0.1:8000/{archivo}')
+
+
+def estadistica (request):
+    manuales = Manual.objects.all().order_by("-hits")
+    instructivos = Instructivo.objects.all().order_by("-hits")
+
+    return render (request, 'estadistica.html' ,{'manuales':manuales,'instructivos':instructivos})
 

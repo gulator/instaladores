@@ -56,13 +56,8 @@
                             <tr>
                                 <th scope="row">{{n.categoria}}</th>
                                 <td>{{n.titulo}}</td>
-                                {% if n.link != 'null' %}
-                                <td><a href="https://www.positron.com.ar/app/uploads/manuales/{{n.link}}"
-                                        target="_blank" rel="noopener noreferrer">descargar</a></td>
-                                {% else %}
-                                <td><a href="../{{n.archivo}}" target="_blank" rel="noopener noreferrer">descargar</a>
-                                </td>
-                                {% endif %}
+                                <td><a href="{% url 'hit_manual' n.id %}"
+                                    target="_blank" rel="noopener noreferrer">descargar</a></td> 
                                 {% if user.is_staff %}
                                 <td><a href="{% url 'borrar_manual' n.id %}">borrar</a></td>
                                 {% endif %}

@@ -9,6 +9,8 @@ urlpatterns = [
     path('buscar_instructivo',views.buscar_instructivo, name='buscar_instructivo'),
     path('subir_instructivo', views.subir_instructivo, name="subir_instructivo"),
     path('borrar_instructivo/<int:id>', views.borrar_instructivo, name='borrar_instructivo'),
+    path('hit_instructivo/<int:id>', views.hit_instructivo, name='hit_instructivo'),
+    path('hit_manual/<int:id>', views.hit_manual, name='hit_manual'),
     path('usuarios',views.usuarios, name='usuarios'),
     path('buscar_usuario',views.buscar_usuario, name='buscar_usuario'),
     path('deshabilitar_usuario/<int:id>', views.deshabilitar_usuario, name='deshabilitar_usuario'),
@@ -22,6 +24,7 @@ urlpatterns = [
     path('buscar_manual',views.buscar_manual,name='buscar_manual'),
     path('subir_manual',views.subir_manual,name='subir_manual'),
     path('borrar_manual/<int:id>', views.borrar_manual, name='borrar_manual'),
+    path('estadistica',views.estadistica,name='estadistica'),
     #path('cargar',views.cargar, name='cargar'),
     #path('funcion_loader', views.funcion_loader, name="funcion_loader")
 ]
