@@ -8,3 +8,6 @@ admin.site.register(Tipo_Manual)
 admin.site.register(Instructivo)
 admin.site.register(Novedad)
 admin.site.register(Profile)
+admin.site.register(Categoria_manual)
+admin.site.register(Manual)
+

@@ -42,7 +42,7 @@ class Tipo_Manual (models.Model):
     #modulo
     #manual
     def __str__(self):
-        return f'Tipo Manual: {self.tipo}'
+        return f'Tipo Instructivo: {self.tipo}'
 
 class Instructivo (models.Model):
     marca = models.CharField(max_length=20)
@@ -76,3 +76,17 @@ class Profile (models.Model):
     '''def __str__(self): 
         return ([{self.user},{self.comercio},{self.localidad},{self.provincia},{self.telefono},{self.cuit},{self.pais}])'''
 
+#Agregado de models Para Manuales
+class Categoria_manual (models.Model):
+    categoria = models.CharField(max_length=30)
+    def __str__(self):
+        return f'{self.categoria}'
+
+class Manual (models.Model):
+    categoria = models.CharField(max_length=30)
+    titulo = models.CharField(max_length=150)
+    link = models.CharField(max_length=150)
+    archivo = models.FileField(upload_to = ruta, null=True, blank=True)
+    
+    def __str__(self):
+        return f'Categoria: {self.categoria} - {self.titulo}'

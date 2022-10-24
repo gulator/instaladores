@@ -35,7 +35,7 @@
                             {% if user.is_superuser %}
                             <li class="nav-item">
                                 <a class="nav-link" aria-current="page" href="{% url 'alta_novedad' %}">Alta Novedad</a>
-                            </li>
+                            </li>                            
                             {% endif %}
                             {% if user.is_staff %}
                             <li class="nav-item">
@@ -43,12 +43,19 @@
                                     Instructivo</a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="{% url 'subir_manual' %}">Subir
+                                    Manual</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" aria-current="page" href="{% url 'usuarios' %}">Usuarios</a>
                             </li>
                             {% endif %}
                             {% if user.is_authenticated %}
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="{% url 'inicio' %}">Principal</a>
+                                <a class="nav-link" aria-current="page" href="{% url 'inicio' %}">Instructivos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="{% url 'manuales' %}">Manuales</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="https://bit.ly/listaPositron" target="_blank"

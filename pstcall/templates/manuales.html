@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block bloque_main %}
+
+
+<main>
+    <div>
+        {% if texto2 %}
+        <div class="alert alert-warning" role="alert" style="text-align: center;">
+            {{texto2}}
+        </div>
+        {% endif %}
+        {% if texto %}
+        <div class="alert alert-danger" role="alert" style="text-align: center;">
+            {{texto}}
+        </div>
+        {% endif %}
+    </div>
+    <principal class="container">
+        <div class="row inicioInstructivos">
+            <section class="col-lg-8 col-12 instructivos">
+                <section class="containerInstructivos">
+                    <h4>Manuales</h4>
+                    <form class="formBusqueda" action="/pstcall/buscar_manual">
+                        <div class="input-group mb-3 borrar">
+                            <input type="text" class="form-control anchoInput" placeholder="Buscar manual"
+                                aria-label="modelo vehiculo" aria-describedby="button-addon2" name="titulo">
+                            <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-search" viewBox="0 0 16 16">
+                                        <path
+                                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                                    </svg></i></button>
+                        </div>
+                        <div class="borrar">
+                            <a class="borrarMute" href="{% url 'manuales' %}">borrar filtro</a>
+                        </div>
+                    </form>
+                </section>
+                <section>
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Categoria</th>
+                                <th scope="col">Titulo</th>                                
+                                <th scope="col">Archivo</th>
+                                {% if user.is_staff %}
+                                <th scope="col"></th>
+                                {% endif %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for n in manuales %}
+                            <tr>
+                                <th scope="row">{{n.categoria}}</th>
+                                <td>{{n.titulo}}</td>
+                                {% if n.link != 'null' %}
+                                <td><a href="https://www.positron.com.ar/app/uploads/manuales/{{n.link}}"
+                                        target="_blank" rel="noopener noreferrer">descargar</a></td>
+                                {% else %}
+                                <td><a href="../{{n.archivo}}" target="_blank" rel="noopener noreferrer">descargar</a>
+                                </td>
+                                {% endif %}
+                                {% if user.is_staff %}
+                                <td><a href="{% url 'borrar_manual' n.id %}">borrar</a></td>
+                                {% endif %}
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </section>
+            </section>
+        </div>
+    </principal>
+</main>
+
+{% endblock %}

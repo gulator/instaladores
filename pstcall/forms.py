@@ -64,3 +64,9 @@ class Nueva_NovedadForm(forms.Form):
     subtitulo = forms.CharField (max_length=120)
     cuerpo = forms.CharField (widget=forms.Textarea)
     imagen = forms.ImageField ()
+
+class Nuevo_Manual (forms.Form):
+    categoria = forms.CharField(max_length=30)
+    titulo = forms.CharField(max_length=150)    
+    #link = forms.CharField(max_length=150)
+    archivo = forms.FileField()

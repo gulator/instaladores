@@ -228,3 +228,90 @@ def usuarios_csv (request):
                 writer.writerow([u.username, p.usuario, u.email, p.telefono, p.localidad, p.provincia, p.comercio, p.cuit, p.pais])
 
     return response
+
+def manuales(request):
+    manuales = Manual.objects.all().order_by("categoria", "titulo")    
+
+    return render(
+        request, "manuales.html", {"manuales": manuales}
+    )
+
+
+def buscar_manual(request):
+
+    texto = f"Ingrese un texto en el campo de búsqueda"
+    manuales = Manual.objects.all().order_by("categoria", "titulo") 
+
+    if request.GET["titulo"]:
+        titulo = request.GET["titulo"]
+        manuales = Manual.objects.filter(titulo__icontains=titulo).order_by("categoria", "titulo")
+
+        texto2 = f'no se han encontrado manuales para con el nombre "{titulo}"'
+
+        if manuales:
+            return render(
+                request,
+                "manuales.html",
+                {"manuales": manuales},
+            )
+        else:
+            manuales = Manual.objects.all().order_by(
+                "categoria", "titulo"
+            )
+            return render(
+                request,
+                "manuales.html",
+                {
+                    "manuales": manuales,
+                    "texto2": texto2
+                },
+            )
+    else:
+        manuales = Manual.objects.all().order_by("categoria", "titulo")
+        return render(
+            request,
+            "manuales.html",
+            {"manuales": manuales, "texto": texto},
+        )
+
+
+def subir_manual(request):
+    categoria = Categoria_manual.objects.all().order_by("categoria")    
+    manuales = Manual.objects.all().order_by("categoria", "titulo")
+
+    if request.method == "POST":
+        formulario = Nuevo_Manual(request.POST, request.FILES)
+
+        if formulario.is_valid():
+            datos = formulario.cleaned_data
+
+            nuevo_manual = Manual(
+                categoria=datos["categoria"],
+                titulo=datos["titulo"],
+                archivo=datos["archivo"],
+            )
+            categoria = datos["categoria"]
+            titulo = datos["titulo"]
+            nuevo_manual.save()
+            texto = f"Manual {categoria}_{titulo} cargado"
+            return render(request, "alta_manual.html", {"texto": texto})
+        else:
+            texto = f'Hubo un error al cargar. Completar todos los campos por favor'
+            return render(
+                request,
+                "alta_manual.html",
+                {"texto": texto},
+            )
+
+    return render(request, "alta_manual.html", {"categoria": categoria})
+
+def borrar_manual(request, id):
+    
+    manual = Manual.objects.get(id=id)
+    manuales = Manual.objects.all().order_by("categoria", "titulo")
+
+    manual.delete()
+
+    return render(request, "manuales.html", {"manuales": manuales})
+
+

@@ -18,6 +18,10 @@ urlpatterns = [
     path('novedades',views.novedades,name='novedades'),
     path('novedad/<int:id>',views.novedad,name='novedad'),
     path('usuarios_csv',views.usuarios_csv,name='usuarios_csv'),
+    path('manuales',views.manuales,name='manuales'),
+    path('buscar_manual',views.buscar_manual,name='buscar_manual'),
+    path('subir_manual',views.subir_manual,name='subir_manual'),
+    path('borrar_manual/<int:id>', views.borrar_manual, name='borrar_manual'),
     #path('cargar',views.cargar, name='cargar'),
     #path('funcion_loader', views.funcion_loader, name="funcion_loader")
 ]
